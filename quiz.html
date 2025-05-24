@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Objets dans l’espace</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #5c6bc0, #80deea);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      padding: 30px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 25px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .item {
+      background: #ffffffdd;
+      color: #333;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+      background-color: #fce4ec;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      width: 80%;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .button {
+      background: #5c6bc0;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #3f51b5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quels objets ont été dans l’espace ?</h1>
+
+  <div class="grid">
+    <div class="item" onclick="showModal('balle de golf')">Balle de golf</div>
+    <div class="item" onclick="showModal('armoire')">Armoire</div>
+    <div class="item" onclick="showModal('gateau')">Gâteau</div>
+    <div class="item" onclick="showModal('pizza')">Pizza</div>
+    <div class="item" onclick="showModal('sabre laser')">Sabre laser</div>
+    <div class="item" onclick="showModal('réfrigérateur')">Réfrigérateur</div>
+    <div class="item" onclick="showModal('statue')">Statue</div>
+    <div class="item" onclick="showModal('chariot')">Chariot</div>
+    <div class="item" onclick="showModal('voiture')">Voiture</div>
+    <div class="item" onclick="showModal('table')">Table</div>
+    <div class="item" onclick="showModal('télévision')">Télévision</div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalMessage">...</h2>
+      <button class="button" onclick="closeModal()">Retour</button>
+    </div>
+  </div>
+
+  <script>
+    const objetsDansEspace = [
+      "balle de golf",
+      "sabre laser",
+      "voiture",
+      "statue",
+      "gateau"
+    ];
+
+    function showModal(objet) {
+      const modal = document.getElementById("modal");
+      const message = document.getElementById("modalMessage");
+      const estCorrect = objetsDansEspace.includes(objet.toLowerCase());
+
+      message.textContent = estCorrect
+        ? `${objet} a été envoyé dans l’espace 🚀`
+        : `${objet} n’a jamais été dans l’espace ❌`;
+
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
